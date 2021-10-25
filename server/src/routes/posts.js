@@ -14,4 +14,8 @@ router.post("/add", (req, res) => {
   controller.addPosts(req, res);
 });
 
+router.delete("/:id", (req, res) => {
+  controller.deletePost(req, res);
+});
+
 module.exports = router;

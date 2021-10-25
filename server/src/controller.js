@@ -29,4 +29,22 @@ const addPosts = (req, res) => {
   }
 };
 
-module.exports = { getPosts, getPostsById, addPosts };
+const deletePost = (req, res) => {
+  const id = parseInt(req.params.id);
+  console.log(id);
+  client.query(queries.getPostsById, [id], (error, results) => {
+    const noPostFound = !results.rows.length;
+    if (noPostFound) {
+      res.status(404).send("The post does not exist in the database");
+      return;
+    }
+
+    client.query(queries.deletePost, [id], (error, results) => {
+      if (error) throw error;
+      res.status(200).send("Post deleted succesfully");
+      return;
+    });
+  });
+};
+
+module.exports = { getPosts, getPostsById, addPosts, deletePost };
