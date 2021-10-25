@@ -47,4 +47,22 @@ const deletePost = (req, res) => {
   });
 };
 
-module.exports = { getPosts, getPostsById, addPosts, deletePost };
+const updatePost = (req, res) => {
+  const id = parseInt(req.params.id);
+  const { content } = req.body;
+  client.query(queries.getPostsById, [id], (error, results) => {
+    const noPostFound = !results.rows.length;
+    if (noPostFound) {
+      res.send("The post does not exist");
+      return;
+    }
+
+    client.query(queries.updatePost, [content, id], (error, results) => {
+      if (error) throw error;
+      res.status(200).send("The post was updated succesfully");
+      return;
+    });
+  });
+};
+
+module.exports = { getPosts, getPostsById, addPosts, deletePost, updatePost };
