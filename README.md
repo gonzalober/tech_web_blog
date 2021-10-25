@@ -26,13 +26,13 @@ I would like to read the full post.
 ```
 As a user,
 So that I can write my post,
-I would like to be able to input my blog.
+I would like to be able to input my post.
 ```
 
 ```
 As a user,
 So that I can show some information about me,
-I would like my post to have my name and psoting date.
+I would like my post to have my name and posting date.
 ```
 
 ```
