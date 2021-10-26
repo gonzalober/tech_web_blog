@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 const Home = () => {
   const [loadingData, setLoadingData] = useState([]);
-  const [userInput, setUserInput] = useState("");
+  const [userInput, setUserInput] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState();
 
@@ -23,10 +23,6 @@ const Home = () => {
       });
   };
 
-  const handleChange = (e) => {
-    setUserInput(e.target.value);
-  };
-
   const addPost = (e) => {
     e.preventDefault();
     fetch("http://localhost:4000/api/posts/add", {
@@ -38,20 +34,17 @@ const Home = () => {
 
       body: JSON.stringify(add()),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        res.json();
+        getPosts();
+      })
       .catch((err) => console.log(err));
   };
 
   const add = () => {
-    let arrayInput = userInput.split(" ");
-    let resultObj = {
-      title: arrayInput[0],
-      content: arrayInput[1],
-    };
-    loadingData.push(resultObj);
-    console.log(loadingData);
+    loadingData.push(userInput);
     setLoadingData([...loadingData]);
-    return resultObj;
+    return userInput;
   };
 
   const deletePost = async (e) => {
@@ -87,6 +80,8 @@ const Home = () => {
                     <div className="card" key={index}>
                       <span>{obj.title}</span>
                       <span>{obj.content}</span>
+                      <span>{obj.username}</span>
+                      <span>{obj.createdat}</span>
                       <button
                         className="button"
                         id={obj.id}
@@ -105,17 +100,33 @@ const Home = () => {
         <form onSubmit={addPost}>
           <input
             className="form"
-            onChange={handleChange}
             type="name"
             placeholder="Insert the title of your blog"
             data-testid="post-title-input"
+            onChange={({ target }) =>
+              setUserInput((state) => ({ ...state, title: target.value }))
+            }
+            value={userInput.title}
           />
           <input
             className="form"
-            onChange={handleChange}
             type="content"
             placeholder="Insert the content of your blog"
-            data-testid="post-conten-input"
+            data-testid="post-content-input"
+            onChange={({ target }) =>
+              setUserInput((state) => ({ ...state, content: target.value }))
+            }
+            value={userInput.content}
+          />
+          <input
+            className="form"
+            type="username"
+            placeholder="Insert your username"
+            data-testid="post-username-input"
+            onChange={({ target }) =>
+              setUserInput((state) => ({ ...state, username: target.value }))
+            }
+            value={userInput.username}
           />
           <button className="button">Insert your Post</button>
         </form>
