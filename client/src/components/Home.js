@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 
 const Home = () => {
   const [loadingData, setLoadingData] = useState([]);
-  const [userInput, setUserInput] = useState({});
+  const [userInput, setUserInput] = useState({
+    title: "",
+    content: "",
+    username: "",
+  });
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState();
+  const history = useHistory();
 
   let getPosts = () => {
     const url = `http://localhost:4000/api/posts/`;
@@ -35,7 +41,7 @@ const Home = () => {
       body: JSON.stringify(add()),
     })
       .then((res) => {
-        res.json();
+        res.text();
         getPosts();
       })
       .catch((err) => console.log(err));
@@ -53,7 +59,7 @@ const Home = () => {
     await fetch(`http://localhost:4000/api/posts/${e.target.id}`, {
       method: "DELETE",
     })
-      .then((res) => res.json())
+      .then((res) => res.text())
       .then((res) => {
         console.log(res);
       })
@@ -62,9 +68,30 @@ const Home = () => {
     setLoadingData(resulArr);
   };
 
+  // const editPost = async (e) => {
+  //   const saved = e.target.id;
+  //   console.log(e.target.id);
+  //   await fetch(`http://localhost:4000/api/posts/${e.target.id}`, {
+  //     method: "PUT",
+  //   })
+  //     .then((res) => res.text())
+  //     .then((res) => {
+  //       console.log(res);
+  //     })
+  //     .catch((err) => console.log(err));
+  //   let resulArr = loadingData.filter((post) => +post.id !== +saved);
+  //   setLoadingData(resulArr);
+  // };
+
   useEffect(() => {
     getPosts();
   }, []);
+
+  const routeChange = (event) => {
+    event.preventDefault();
+    let path = `edit`;
+    history.push(path);
+  };
 
   return (
     <div className="main">
@@ -82,6 +109,13 @@ const Home = () => {
                       <span>{obj.content}</span>
                       <span>{obj.username}</span>
                       <span>{obj.createdat}</span>
+                      <button
+                        className="button"
+                        id={obj.id}
+                        onClick={routeChange}
+                      >
+                        Edit your content Here!
+                      </button>
                       <button
                         className="button"
                         id={obj.id}
