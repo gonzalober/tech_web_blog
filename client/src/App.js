@@ -1,9 +1,9 @@
 import "./App.css";
 import Home from "./components/Home";
-import EditPost from "./components/Edit";
+import EditPost from "./components/EditPost";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-function App() {
+const App = () => {
   return (
     <div>
       <Router>
@@ -16,6 +16,6 @@ function App() {
       </Router>
     </div>
   );
-}
+};
 
 export default App;

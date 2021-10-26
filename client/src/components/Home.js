@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
 const Home = () => {
@@ -87,10 +87,9 @@ const Home = () => {
     getPosts();
   }, []);
 
-  const routeChange = (event) => {
-    event.preventDefault();
-    let path = `edit`;
-    history.push(path);
+  const routeChange = (e) => {
+    e.preventDefault();
+    return history.push(`edit`);
   };
 
   return (

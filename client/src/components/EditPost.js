@@ -1,7 +1,7 @@
 import { useHistory } from "react-router-dom";
 
-const Edit = () => {
-  const history = useHistory();
+const EditPost = () => {
+  // const history = useHistory();
   // const [loadingData, setLoadingData] = useState([]);
   // const [userInput, setUserInput] = useState({
   //   title: "",
@@ -35,4 +35,4 @@ const Edit = () => {
   );
 };
 
-export default Edit;
+export default EditPost;
