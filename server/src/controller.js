@@ -18,12 +18,16 @@ const getPostsById = (req, res) => {
 };
 
 const addPosts = (req, res) => {
-  const { username, content } = req.body;
-  if (username && content) {
-    client.query(queries.addPosts, [username, content], (error, results) => {
-      if (error) throw error;
-      res.status(201).send("Your post have been saved successfully");
-    });
+  const { username, title, content } = req.body;
+  if (username && title && content) {
+    client.query(
+      queries.addPosts,
+      [username, title, content],
+      (error, results) => {
+        if (error) throw error;
+        res.status(201).send("Your post have been saved successfully");
+      }
+    );
   } else {
     res.status(500).json({ error: "There was an error." });
   }
