@@ -68,28 +68,14 @@ const Home = () => {
     setLoadingData(resulArr);
   };
 
-  // const editPost = async (e) => {
-  //   const saved = e.target.id;
-  //   console.log(e.target.id);
-  //   await fetch(`http://localhost:4000/api/posts/${e.target.id}`, {
-  //     method: "PUT",
-  //   })
-  //     .then((res) => res.text())
-  //     .then((res) => {
-  //       console.log(res);
-  //     })
-  //     .catch((err) => console.log(err));
-  //   let resulArr = loadingData.filter((post) => +post.id !== +saved);
-  //   setLoadingData(resulArr);
-  // };
-
   useEffect(() => {
     getPosts();
   }, []);
 
   const routeChange = (e) => {
     e.preventDefault();
-    return history.push(`edit`);
+    let resulArr = loadingData.filter((post) => +post.id === +e.target.id);
+    return history.push({ pathname: `edit`, data: resulArr });
   };
 
   return (

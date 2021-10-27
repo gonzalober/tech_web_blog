@@ -1,36 +1,52 @@
-import { useHistory } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
+import ContentEditable from "react-contenteditable";
 
 const EditPost = () => {
-  // const history = useHistory();
-  // const [loadingData, setLoadingData] = useState([]);
-  // const [userInput, setUserInput] = useState({
-  //   title: "",
-  //   content: "",
-  //   username: "",
-  // });
-  // const [isLoading, setLoading] = useState(true);
-  // const [error, setError] = useState();
+  const location = useLocation();
+  const text = useRef("");
+  const [dataAvailable, setdataAvailable] = useState();
+  const [upDatedContent, setUpDatedContent] = useState("");
 
-  // let getPosts = () => {
-  //   const url = `http://localhost:4000/api/posts/`;
-  //   fetch(url)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setLoadingData(data);
-  //       setLoading(false);
-  //       setError(undefined);
-  //     })
-  //     .catch((er) => {
-  //       console.error("Error:", er);
-  //       setError(er.message);
-  //       setLoading(false);
-  //       setLoadingData([]);
-  //     });
-  // };
+  const handleChange = (e) => {
+    text.current = e.target.value;
+  };
+  console.log(upDatedContent);
+  const editPost = async () => {
+    await fetch(`http://localhost:4000/api/posts/${dataAvailable[0].id}`, {
+      method: "PUT",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(upDatedContent),
+    })
+      .then((res) => res.text())
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    setdataAvailable(location.data);
+    setUpDatedContent(text.current);
+  }, []);
 
   return (
     <div className="main">
-      <div>Hola</div>
+      <div>
+        {dataAvailable !== undefined && dataAvailable.length !== 0 ? (
+          <form onSubmit={editPost}>
+            <ContentEditable
+              html={dataAvailable[0].content}
+              disabled={false}
+              onChange={handleChange}
+            />
+            <button className="button">Update your Post</button>
+          </form>
+        ) : null}
+      </div>
     </div>
   );
 };
