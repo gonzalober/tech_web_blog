@@ -72,10 +72,12 @@ const Home = () => {
     getPosts();
   }, []);
 
-  const routeChange = (e) => {
-    e.preventDefault();
-    let resulArr = loadingData.filter((post) => +post.id === +e.target.id);
-    return history.push({ pathname: `edit`, data: resulArr });
+  const routeEdit = (id) => {
+    return history.push({ pathname: `edit/${id}` });
+  };
+
+  const routeReadArticle = (id) => {
+    return history.push({ pathname: `full-article/${id}` });
   };
 
   return (
@@ -90,14 +92,22 @@ const Home = () => {
               ? loadingData.map((obj, index) => {
                   return (
                     <div className="card" key={index}>
-                      <span>{obj.title}</span>
+                      <span
+                        className="title"
+                        id={obj.id}
+                        onClick={() => routeReadArticle(obj.id)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {obj.title}
+                      </span>
                       <span>{obj.content}</span>
-                      <span>{obj.username}</span>
+                      <span> WRITTEN BY: {obj.username}</span>
                       <span>{obj.createdat}</span>
                       <button
                         className="button"
                         id={obj.id}
-                        onClick={routeChange}
+                        onClick={() => routeEdit(obj.id)}
                       >
                         Edit your content Here!
                       </button>

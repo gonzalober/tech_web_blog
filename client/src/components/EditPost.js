@@ -1,25 +1,37 @@
-import { useLocation } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
-import ContentEditable from "react-contenteditable";
+import { useHistory, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 const EditPost = () => {
-  const location = useLocation();
-  const text = useRef("");
+  const [loadingData, setLoadingData] = useState([]);
+  const { id } = useParams();
+  const history = useHistory();
   const [dataAvailable, setdataAvailable] = useState();
-  const [upDatedContent, setUpDatedContent] = useState("");
 
-  const handleChange = (e) => {
-    text.current = e.target.value;
+  let getPost = (id) => {
+    const url = `http://localhost:4000/api/posts/${id}`;
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        setdataAvailable(data[0]);
+        setLoadingData(false);
+        //   setError(undefined);
+      })
+      .catch((er) => {
+        // console.error("Error:", er);
+        // setError(er.message);
+        // setLoading(false);
+        // setLoadingData([]);
+      });
   };
-  console.log(upDatedContent);
-  const editPost = async () => {
-    await fetch(`http://localhost:4000/api/posts/${dataAvailable[0].id}`, {
+  const editPost = async (id, e) => {
+    e.preventDefault();
+    await fetch(`http://localhost:4000/api/posts/${id}`, {
       method: "PUT",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(upDatedContent),
+      body: JSON.stringify(dataAvailable),
     })
       .then((res) => res.text())
       .then((res) => {
@@ -29,24 +41,55 @@ const EditPost = () => {
   };
 
   useEffect(() => {
-    setdataAvailable(location.data);
-    setUpDatedContent(text.current);
-  }, []);
+    getPost(id);
+  }, [id]);
 
+  const routeHome = (event) => {
+    event.preventDefault();
+    let path = `/`;
+    history.push(path);
+  };
+  console.log(id);
   return (
     <div className="main">
       <div>
-        {dataAvailable !== undefined && dataAvailable.length !== 0 ? (
-          <form onSubmit={editPost}>
-            <ContentEditable
-              html={dataAvailable[0].content}
-              disabled={false}
-              onChange={handleChange}
+        {loadingData !== undefined && loadingData.length !== 0 ? (
+          <form onSubmit={(e) => editPost(id, e)}>
+            <input
+              className="form"
+              disabled
+              type="name"
+              placeholder="Insert the title of your blog"
+              data-testid="post-title-input"
+              value={dataAvailable.title}
             />
-            <button className="button">Update your Post</button>
+            <textarea
+              className="form"
+              placeholder="Insert the content of your blog"
+              data-testid="post-content-input"
+              onChange={({ target }) =>
+                setdataAvailable((state) => ({
+                  ...state,
+                  content: target.value,
+                }))
+              }
+              value={dataAvailable.content}
+            />
+            <input
+              className="form"
+              type="username"
+              disabled
+              placeholder="Insert your username"
+              data-testid="post-username-input"
+              value={dataAvailable.username}
+            />
+            <button className="button">Edit your Post</button>
           </form>
         ) : null}
       </div>
+      <button className="button" onClick={routeHome}>
+        Home
+      </button>
     </div>
   );
 };
