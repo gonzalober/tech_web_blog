@@ -48,3 +48,7 @@ I would like to have the option to delete it.
 ```
 
 ---
+
+System diagram
+
+![Logo](/client/public/system_diagram.png)

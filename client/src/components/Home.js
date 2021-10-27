@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
 const Home = () => {
   const [loadingData, setLoadingData] = useState([]);
@@ -82,6 +83,7 @@ const Home = () => {
 
   return (
     <div className="main">
+      <h1>Welcome to the Techie Blog!!!</h1>
       <div>
         {error && <div>{error}</div>}
         {isLoading ? (
@@ -136,6 +138,7 @@ const Home = () => {
               setUserInput((state) => ({ ...state, title: target.value }))
             }
             value={userInput.title}
+            required
           />
           <input
             className="form"
@@ -146,6 +149,7 @@ const Home = () => {
               setUserInput((state) => ({ ...state, content: target.value }))
             }
             value={userInput.content}
+            required
           />
           <input
             className="form"
@@ -156,6 +160,7 @@ const Home = () => {
               setUserInput((state) => ({ ...state, username: target.value }))
             }
             value={userInput.username}
+            required
           />
           <button className="button">Insert your Post</button>
         </form>
