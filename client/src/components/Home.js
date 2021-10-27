@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import Button from "react-bootstrap/Button";
+import formatDate from "../formatDate";
 
 const Home = () => {
   const [loadingData, setLoadingData] = useState([]);
@@ -82,8 +82,23 @@ const Home = () => {
   };
 
   return (
-    <div className="main">
-      <h1>Welcome to the Techie Blog!!!</h1>
+    <div>
+      <header className="blog-header py-3">
+        <div className="row flex-nowrap justify-content-between align-items-center">
+          <div className="col-4 pt-1">
+            <a className="link-secondary" href="#"></a>
+          </div>
+          <div className="col-4 text-center">
+            <h1 className="blog-header-logo text-dark">
+              Welcome to the Techie-Corner Blog!!!
+            </h1>
+          </div>
+          <div className="col-4 d-flex justify-content-end align-items-center">
+            <a className="link-secondary" href="#" aria-label="Search"></a>
+            <a className="btn btn-sm btn-outline-secondary" href="#"></a>
+          </div>
+        </div>
+      </header>
       <div>
         {error && <div>{error}</div>}
         {isLoading ? (
@@ -93,34 +108,64 @@ const Home = () => {
             {loadingData !== undefined && loadingData.length !== 0
               ? loadingData.map((obj, index) => {
                   return (
-                    <div className="card" key={index}>
-                      <span
-                        className="title"
-                        id={obj.id}
-                        onClick={() => routeReadArticle(obj.id)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {obj.title}
-                      </span>
-                      <span>{obj.content}</span>
-                      <span> WRITTEN BY: {obj.username}</span>
-                      <span>{obj.createdat}</span>
-                      <button
-                        className="button"
-                        id={obj.id}
-                        onClick={() => routeEdit(obj.id)}
-                      >
-                        Edit your content Here!
-                      </button>
-                      <button
-                        className="button"
-                        id={obj.id}
-                        onClick={deletePost}
-                      >
-                        delete your post
-                      </button>
-                    </div>
+                    <>
+                      <div className="row mb-2">
+                        <div
+                          className="wp-block-group bs-card-hover-zoom add-padding-top"
+                          key={index}
+                        >
+                          <div className="col-md-6">
+                            <div className="col p-4 d-flex flex-column position-static">
+                              <h3
+                                className="mb-0"
+                                id={obj.id}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={() => routeReadArticle(obj.id)}
+                              >
+                                {obj.title}
+                              </h3>
+                              <div className="mb-1 text-muted">
+                                {formatDate(obj.createdat)}
+                              </div>
+                              <p
+                                className="card-text mb-auto"
+                                onClick={() => routeReadArticle(obj.id)}
+                              >
+                                {obj.content.substring(0, 200)}
+                              </p>
+                              <a
+                                href="#"
+                                onClick={() => routeReadArticle(obj.id)}
+                                className="stretched-link"
+                              >
+                                Continue reading
+                              </a>
+                            </div>
+                            <p></p>
+                            <p>
+                              <span> WRITTEN BY: {obj.username}</span>
+                            </p>
+                            <p>
+                              <button
+                                className="button"
+                                id={obj.id}
+                                onClick={() => routeEdit(obj.id)}
+                              >
+                                Edit your content Here!
+                              </button>
+                              <button
+                                className="button"
+                                id={obj.id}
+                                onClick={deletePost}
+                              >
+                                delete your post
+                              </button>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </>
                   );
                 })
               : null}
@@ -165,6 +210,15 @@ const Home = () => {
           <button className="button">Insert your Post</button>
         </form>
       </div>
+      <footer className="blog-footer">
+        <p>
+          Techie-Corner Blog
+          <a> by Gonzalo</a>.
+        </p>
+        <p>
+          <a href="#">Back to top</a>
+        </p>
+      </footer>
     </div>
   );
 };

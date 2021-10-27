@@ -14,13 +14,11 @@ const EditPost = () => {
       .then((data) => {
         setdataAvailable(data[0]);
         setLoadingData(false);
-        //   setError(undefined);
       })
       .catch((er) => {
-        // console.error("Error:", er);
-        // setError(er.message);
-        // setLoading(false);
-        // setLoadingData([]);
+        console.error("Error:", er);
+        setLoading(false);
+        setLoadingData([]);
       });
   };
   const editPost = async (id, e) => {
@@ -65,7 +63,10 @@ const EditPost = () => {
             />
             <textarea
               className="form"
-              placeholder="Insert the content of your blog"
+              name="text"
+              style={{
+                height: "auto",
+              }}
               data-testid="post-content-input"
               onChange={({ target }) =>
                 setdataAvailable((state) => ({
@@ -83,7 +84,7 @@ const EditPost = () => {
               data-testid="post-username-input"
               value={dataAvailable.username}
             />
-            <button className="button">Edit your Post</button>
+            <button className="button">Submit your Edited Post</button>
           </form>
         ) : null}
       </div>

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
+import formatDate from "../formatDate";
 
 const Article = () => {
   const [loadingData, setLoadingData] = useState([]);
@@ -21,13 +22,9 @@ const Article = () => {
       .then((data) => {
         setdataAvailable(data[0]);
         setLoadingData(false);
-        //   setError(undefined);
       })
       .catch((er) => {
-        // console.error("Error:", er);
-        // setError(er.message);
-        // setLoading(false);
-        // setLoadingData([]);
+        console.error("Error:", er);
       });
   };
 
@@ -38,22 +35,31 @@ const Article = () => {
   console.log(dataAvailable);
 
   return (
-    <div className="main">
+    <div className="blog-post">
       <div>
         {loadingData !== undefined && loadingData.length !== 0 ? (
-          <div className="card">
-            <span className="title" target="_blank" rel="noopener noreferrer">
-              {dataAvailable.title}
-            </span>
+          <div>
+            <h2 className="blog-post-title">{dataAvailable.title}</h2>
+            <p className="blog-post-meta">
+              {formatDate(dataAvailable.createdat)}{" "}
+              <a href="#">{dataAvailable.username}</a>
+            </p>
             <span>{dataAvailable.content}</span>
-            <span>{dataAvailable.username}</span>
-            <span>{dataAvailable.createdat}</span>
           </div>
         ) : null}
       </div>
       <button className="button" onClick={routeHome}>
         Home
       </button>
+      <footer className="blog-footer">
+        <p>
+          Techie-Corner Blog
+          <a> by Gonzalo</a>.
+        </p>
+        <p>
+          <a href="#">Back to top</a>
+        </p>
+      </footer>
     </div>
   );
 };
