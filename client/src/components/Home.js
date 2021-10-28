@@ -172,44 +172,46 @@ const Home = () => {
           </ul>
         )}
       </div>
-      <div className="form">
-        <form onSubmit={addPost}>
-          <input
-            className="form"
-            type="name"
-            placeholder="Insert the title of your blog"
-            data-testid="post-title-input"
-            onChange={({ target }) =>
-              setUserInput((state) => ({ ...state, title: target.value }))
-            }
-            value={userInput.title}
-            required
-          />
-          <input
-            className="form"
-            type="content"
-            placeholder="Insert the content of your blog"
-            data-testid="post-content-input"
-            onChange={({ target }) =>
-              setUserInput((state) => ({ ...state, content: target.value }))
-            }
-            value={userInput.content}
-            required
-          />
-          <input
-            className="form"
-            type="username"
-            placeholder="Insert your username"
-            data-testid="post-username-input"
-            onChange={({ target }) =>
-              setUserInput((state) => ({ ...state, username: target.value }))
-            }
-            value={userInput.username}
-            required
-          />
-          <button className="button">Insert your Post</button>
-        </form>
-      </div>
+      <p>
+        <div className="form">
+          <form onSubmit={addPost}>
+            <input
+              className="form"
+              type="name"
+              placeholder="Insert the title of your blog"
+              data-testid="post-title-input"
+              onChange={({ target }) =>
+                setUserInput((state) => ({ ...state, title: target.value }))
+              }
+              value={userInput.title}
+              required
+            />
+            <input
+              className="form"
+              type="content"
+              placeholder="Insert the content of your blog"
+              data-testid="post-content-input"
+              onChange={({ target }) =>
+                setUserInput((state) => ({ ...state, content: target.value }))
+              }
+              value={userInput.content}
+              required
+            />
+            <input
+              className="form"
+              type="username"
+              placeholder="Insert your username"
+              data-testid="post-username-input"
+              onChange={({ target }) =>
+                setUserInput((state) => ({ ...state, username: target.value }))
+              }
+              value={userInput.username}
+              required
+            />
+            <button className="button">Insert your Post</button>
+          </form>
+        </div>
+      </p>
       <footer className="blog-footer">
         <p>
           Techie-Corner Blog
@@ -219,6 +221,7 @@ const Home = () => {
           <a href="#">Back to top</a>
         </p>
       </footer>
+      <br></br>
     </div>
   );
 };
