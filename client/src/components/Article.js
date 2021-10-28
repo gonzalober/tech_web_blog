@@ -44,7 +44,7 @@ const Article = () => {
               {formatDate(dataAvailable.createdat)}{" "}
               <a href="#">{dataAvailable.username}</a>
             </p>
-            <span>{dataAvailable.content}</span>
+            <span className="font-content">{dataAvailable.content}</span>
           </div>
         ) : null}
       </div>

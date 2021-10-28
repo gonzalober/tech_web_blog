@@ -28,13 +28,15 @@ curl $url3 --output $file3 --silent
 
 # Validations on the file size, naming and file extension should be made as part of your shell script.
 # file size en bytes
-File_size=$(curl -sI $url1 | grep -i Content-Length | awk '{print $2}') 
+File_size=$(curl -sI $url1 | grep -i Content-Length | awk '{printf "%.0f\n", $2}') 
 echo $File_size
-Size_max=1000000
-# if (( $((File_size)) > $Size_max )); then
-#   echo "wrong file size" 
-#   exit 1
-# fi
+Size_max=100000
+# echo $(($File_size + $Size_max))
+
+if (( File_size > Size_max)); then
+  echo "wrong file size" 
+  exit 1
+fi
 
 Content1=$(cat $file1)
 Username1="Emma Frame"

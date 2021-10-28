@@ -5,18 +5,38 @@ body {
   background-color: #bbc9dd;
 }
 
+h1 {
+  font-family: "futura";
+}
+
+h2 {
+  font-family: "futura";
+}
+
+.font-content {
+  font-family: "futura";
+}
+
 button {
+  background-image: linear-gradient(
+    to right,
+    #edcb5d 0%,
+    #edb35d 51%,
+    #c315da 100%
+  );
   padding: 10px;
   margin: 8px;
   border-radius: 6px;
   border: 1px solid #f29ebf;
-  color: #f29ebf;
+  color: #ffffff;
   cursor: pointer;
+  font-family: "futura";
 }
 
-button a:hover {
-  color: #f29ebf;
-  background-color: #596980;
+button:hover {
+  background-position: left;
+  color: #fff;
+  text-decoration: none;
 }
 
 .form {

@@ -90,7 +90,7 @@ const Home = () => {
           </div>
           <div className="col-4 text-center">
             <h1 className="blog-header-logo text-dark">
-              Welcome to the Techie-Corner Blog!!!
+              {`{The Tech-Corner Blog}`}
             </h1>
           </div>
           <div className="col-4 d-flex justify-content-end align-items-center">
