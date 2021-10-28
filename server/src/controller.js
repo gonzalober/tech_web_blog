@@ -45,7 +45,6 @@ const deletePost = (req, res) => {
       res.status(404).send("The post does not exist in the database");
       return;
     }
-
     client.query(queries.deletePost, [id], (error, results) => {
       if (error) throw error;
       res.status(200).send("Post deleted succesfully");
