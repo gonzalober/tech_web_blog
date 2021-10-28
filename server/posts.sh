@@ -38,10 +38,10 @@ File1=$(curl -O $url1 --silent -w "%{filename_effective}")
 # file size en bytes
 
 # validation file ending with .exe .bin .dmg
-if (( File1 doens't end)); then
-  echo "wrong file extension" 
-  exit 1
-fi
+# if (( $File1 doens't end)); then
+#   echo "wrong file extension" 
+#   exit 1
+# fi
 
 
 Content1=$(cat $File1)
