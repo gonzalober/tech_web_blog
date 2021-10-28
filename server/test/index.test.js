@@ -2,11 +2,9 @@ const express = require("express");
 const request = require("supertest");
 const app = require("../src/index.js");
 
-// const { Client } = require("pg");
-// const { success, failure } = require("./handler");
-// const client = require("../src/databasepg");
-
 describe("GET /", () => {
+  //beforeEach
+  //afterEach
   test("should return status 200", async () => {
     const res = await request(app).get("/");
     expect(res.status).toBe(200);
@@ -15,12 +13,17 @@ describe("GET /", () => {
 
 describe("POST /add", () => {
   test("should respond with a 201 status code", async () => {
-    await request(app).post("/add").send({
+    const res = await request(app).post("/add").send({
       username: "test",
       title: "testing Title",
       content: "I am testing API post",
     });
-    expect(201);
+    expect(res.status).toBe(201);
+    expect((201).json(results.rows)).toBe({
+      username: "test",
+      title: "testing Title",
+      content: "I am testing API post",
+    });
   });
 });
 

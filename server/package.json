@@ -19,7 +19,7 @@
   },
   "scripts": {
     "start": "nodemon src/server.js",
-    "test": "jest --coverage --runInBand --silent --detectOpenHandles"
+    "test": "jest --coverage --runInBand --silent --forceExit"
   },
   "env": {
     "test": {

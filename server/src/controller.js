@@ -23,8 +23,12 @@ const addPosts = (req, res) => {
       queries.addPosts,
       [username, title, content],
       (error, results) => {
-        if (error) throw error;
+        if (error) {
+          res.status(500).json({ error: "There was an error." });
+          return;
+        }
         res.status(201).send("Your post have been saved successfully");
+        return;
       }
     );
   } else {
