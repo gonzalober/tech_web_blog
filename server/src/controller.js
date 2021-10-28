@@ -46,7 +46,10 @@ const deletePost = (req, res) => {
       return;
     }
     client.query(queries.deletePost, [id], (error, results) => {
-      if (error) throw error;
+      if (error) {
+        res.status(500).json({ error: "There was an error." });
+        return;
+      }
       res.status(200).send("Post deleted succesfully");
       return;
     });
