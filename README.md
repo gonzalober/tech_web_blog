@@ -1,5 +1,7 @@
 # <div style="text-align: center">Welcome to The Techie Corner</div>
 
+[![GitHub Actions](https://github.com/gonzalober/tech_web_blog/actions/workflows/github-actions-demo.yml/badge.svg)](https://github.com/gonzalober/tech_web_blog/actions/workflows/github-actions-demo.yml)
+
 <div style="text-align: center"> by: <a href="https://github.com/gonzalober">Gonzalo</a>
 
 ---
