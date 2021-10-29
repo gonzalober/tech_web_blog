@@ -30,6 +30,10 @@ echo $File1
 # file size en bytes
 
 # validation file ending with .exe .bin .dmg
+if [[ $File1 == *.txt ]];then
+  echo "wrong file extention" 
+  exit 1
+fi
 
 # if (( $File1 doens't end)); then
 #   echo "wrong file extension" 
