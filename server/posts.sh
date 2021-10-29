@@ -11,7 +11,7 @@ echo "Checking / Creating directory"
 
 mkdir -p $dire;
 cd $dire
-
+# head allows not to download the full body
 File_size=$(curl -X HEAD -sI $url1 | grep -i Content-Length | awk '{printf "%.0f\n", $2}') 
 echo $File_size
 Size_max=100000
