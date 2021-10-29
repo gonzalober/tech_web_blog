@@ -88,11 +88,7 @@ const Home = () => {
           <div className="col-4 pt-1">
             <a className="link-secondary" href="#"></a>
           </div>
-          <div className="col-4 text-center">
-            <h1 className="blog-header-logo text-dark">
-              {`{The Tech-Corner Blog}`}
-            </h1>
-          </div>
+          <div className="col-4 text-center"></div>
           <div className="col-4 d-flex justify-content-end align-items-center">
             <a className="link-secondary" href="#" aria-label="Search"></a>
             <a className="btn btn-sm btn-outline-secondary" href="#"></a>
