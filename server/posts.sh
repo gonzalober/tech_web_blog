@@ -35,12 +35,6 @@ if [[ $File1 == *.txt ]];then
   exit 1
 fi
 
-# if (( $File1 doens't end)); then
-#   echo "wrong file extension" 
-#   exit 1
-# fi
-
-
 Content1=$(cat $File1)
 Username1=$2
 Title1=$3
