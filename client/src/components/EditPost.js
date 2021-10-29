@@ -40,7 +40,7 @@ const EditPost = () => {
 
   useEffect(() => {
     getPost(id);
-  }, [id]);
+  }, []);
 
   const routeHome = (event) => {
     event.preventDefault();
