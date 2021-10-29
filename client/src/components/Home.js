@@ -211,7 +211,7 @@ const Home = () => {
       <footer className="blog-footer">
         <p>
           Techie-Corner Blog
-          <a> by Gonzalo</a>.
+          <a href="https://github.com/gonzalober/tech_web_blog">by Gonzalo</a>.
         </p>
         <p>
           <a href="#">Back to top</a>
