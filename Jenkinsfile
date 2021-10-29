@@ -12,12 +12,18 @@ pipeline{
         echo "First step of my CI"
       }
     }
-    stage ("Unit tests"){
+    stage ("install npm and dependencies"){
       steps {
             sh """
               npm install
+            """
+      }
+    }
+
+    stage ("Unit tests"){
+      steps {
+            sh """
               npm test
-              
             """
       }
     }
