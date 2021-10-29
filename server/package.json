@@ -19,7 +19,7 @@
   },
   "scripts": {
     "start": "nodemon src/server.js",
-    "jest": "jest"
+    "jest": "jest --coverage --runInBand --silent --forceExit"
   },
   "env": {
     "test": {
