@@ -10,15 +10,19 @@ pipeline{
     stage ("Build"){
       steps {
         echo "First step of my CI"
-      }
-    }
-    stage ("install npm and dependencies"){
-      steps {
-            sh """
+        sh """
               npm install
             """
       }
     }
+    // stage ("install npm and dependencies"){
+    //   steps {
+    //         sh """
+    //           npm install
+    //         """
+    //   }
+      
+    // }
 
     stage ("Unit tests"){
       steps {
@@ -27,6 +31,7 @@ pipeline{
             """
       }
     }
+
     stage ("E2E tests"){
       steps {
             sh """
