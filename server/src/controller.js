@@ -11,7 +11,11 @@ const getPosts = (req, res) => {
 const getPostsById = (req, res) => {
   const id = parseInt(req.params.id);
   client.query(queries.getPostsById, [id], (error, results) => {
-    if (error) throw error;
+    const noPostFound = !results.rows.length;
+    if (noPostFound) {
+      res.status(404).send("The post does not exist in the database");
+      return;
+    }
     res.status(200).json(results.rows);
   });
 };
@@ -62,7 +66,7 @@ const updatePost = (req, res) => {
   client.query(queries.getPostsById, [id], (error, results) => {
     const noPostFound = !results.rows.length;
     if (noPostFound) {
-      res.send("The post does not exist");
+      res.status(500).send("The post does not exist");
       return;
     }
 
