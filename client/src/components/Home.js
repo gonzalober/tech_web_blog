@@ -210,12 +210,12 @@ const Home = () => {
       </p>
       <footer className="blog-footer">
         <p>
+          <a href="#">Back to top</a>
+        </p>
+        <p>
           Techie-Corner Blog
           <p></p>
           <a href="https://github.com/gonzalober/tech_web_blog">by Gonzalo</a>.
-        </p>
-        <p>
-          <a href="#">Back to top</a>
         </p>
       </footer>
       <br></br>
