@@ -10,6 +10,25 @@
 
 It is a Tech Blog Website built for one week solo Project.
 I set a list of client's basic specifications that I can broke them down into user stories listed below.
+Stack-> BE: postgresql, express, Jest. FE: react, cypress, boostrap.
+
+---
+
+### Get the app running
+
+Clone and:
+
+```
+First:
+Start server:
+npm start
+```
+
+```
+Second:
+Start client:
+npm start
+```
 
 ---
 
