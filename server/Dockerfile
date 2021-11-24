@@ -3,5 +3,4 @@ WORKDIR /app
 COPY ./package.json ./
 RUN npm i
 COPY . .
-EXPOSE 5432
 CMD ["npm","start"]
