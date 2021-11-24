@@ -27,7 +27,8 @@ jobs:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: adgb-infra
         IMAGE_TAG: ${{ github.sha }}
-      run: |
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+      run: 
+        docker build -f Dockerfile -t blogclient .
+        docker tag blogclient:latest 603825719481.dkr.ecr.eu-west-1.amazonaws.com/adgb-infra:latest
+        docker push 603825719481.dkr.ecr.eu-west-1.amazonaws.com/adgb-infra:latest
 
