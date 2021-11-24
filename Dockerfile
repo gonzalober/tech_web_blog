@@ -3,7 +3,7 @@ FROM node:lts
 WORKDIR /app
 RUN mkdir -p /app/client
 RUN mkdir -p /app/server
-COPY ./server/package*.json ./server
+COPY ./server/package*.json ./server/
 WORKDIR /app/server
 RUN npm install
 WORKDIR /app
