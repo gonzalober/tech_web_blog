@@ -24,8 +24,9 @@ jobs:
       uses: aws-actions/amazon-ecr-login@v1
 
     - name: Build, tag, and push image to Amazon ECR
+      uses: docker/build-push-action
       with: 
-        context: ./client
+        context: .
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: adgb-infra
