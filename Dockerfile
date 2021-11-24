@@ -11,7 +11,7 @@ COPY ./server ./server
 COPY ./client ./client
 WORKDIR /app/client
 RUN npm install 
-RUN npm run build && cp -r build/* ../server/public/
+RUN npm run build && cp -r build/* ../server/public
 WORKDIR /app/server
 RUN chown -R node:node /app
 USER node
