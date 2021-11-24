@@ -1,12 +1,19 @@
 const { Client } = require("pg");
 
-const client = new Client({
-  user: process.env.PG_USER,
-  host: process.env.PGHOST,
-  database: "tech_blog",
-  port: process.env.PGPORT,
-});
+const client = new Client(process.env.DATABASE_URL);
 
-client.connect();
+(async () => {
+  let retries = 5;
+  while (retries) {
+    try {
+      await client.connect();
+      break;
+    } catch (error) {
+      console.log(error);
+      retries -= 1;
+      console.log(`retries left ${retries}`);
+    }
+  }
+})();
 
 module.exports = client;

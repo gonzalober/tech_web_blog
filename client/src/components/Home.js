@@ -14,7 +14,7 @@ const Home = () => {
   const history = useHistory();
 
   let getPosts = () => {
-    const url = `http://localhost:4000/api/posts/`;
+    const url = `${window.location.origin}/api/posts/`;
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
