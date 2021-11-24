@@ -12,6 +12,7 @@ const client = new Client(process.env.DATABASE_URL);
       console.log(error);
       retries -= 1;
       console.log(`retries left ${retries}`);
+      await new Promise((res) => setTimeout(res, 2000));
     }
   }
 })();

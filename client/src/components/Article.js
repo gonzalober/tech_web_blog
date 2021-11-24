@@ -16,7 +16,7 @@ const Article = () => {
   };
 
   let getPost = (id) => {
-    const url = `http://localhost:4000/api/posts/${id}`;
+    const url = `${window.location.origin}/api/posts/${id}`;
     fetch(url)
       .then((response) => response.json())
       .then((data) => {

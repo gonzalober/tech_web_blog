@@ -8,7 +8,7 @@ const EditPost = () => {
   const [dataAvailable, setdataAvailable] = useState();
 
   let getPost = (id) => {
-    const url = `http://localhost:4000/api/posts/${id}`;
+    const url = `${window.location.origin}/api/posts/${id}`;
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
@@ -23,7 +23,7 @@ const EditPost = () => {
   };
   const editPost = async (id, e) => {
     e.preventDefault();
-    await fetch(`http://localhost:4000/api/posts/${id}`, {
+    await fetch(`${window.location.origin}/api/posts/${id}`, {
       method: "PUT",
       headers: {
         Accept: "application/json",
