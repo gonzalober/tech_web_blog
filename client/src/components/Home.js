@@ -14,7 +14,7 @@ const Home = () => {
   const history = useHistory();
 
   let getPosts = () => {
-    const url = `http://localhost:4000/api/posts/`;
+    const url = `${window.location.origin}/api/posts/`;
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
@@ -32,7 +32,7 @@ const Home = () => {
 
   const addPost = (e) => {
     e.preventDefault();
-    fetch("http://localhost:4000/api/posts/add", {
+    fetch(`${window.location.origin}/api/posts/add`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -57,7 +57,7 @@ const Home = () => {
   const deletePost = async (e) => {
     const saved = e.target.id;
     console.log(e.target.id);
-    await fetch(`http://localhost:4000/api/posts/${e.target.id}`, {
+    await fetch(`${window.location.origin}/api/posts/${e.target.id}`, {
       method: "DELETE",
     })
       .then((res) => res.text())

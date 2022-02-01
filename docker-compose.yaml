@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+  app:
+    build: .
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgres://gonzalo.berhouetecs.co.uk:test@postgres:5432/tech_blog
+      NODE_ENV: development
+      PORT: 3000  
+    ports:
+      - "3000:3000"
+    command: npm start
+
+  postgres:
+    image: postgres:14.0
+    ports:
+      - "35432:5432"
+    environment:
+      POSTGRES_USER: gonzalo.berhouetecs.co.uk
+      POSTGRES_PASSWORD: test
+      POSTGRES_DB: tech_blog
+    volumes:
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+  
+  # client:
+  #   build: ../client
+  #   depends_on:
+  #     - app
+  #   environment:
+  #     REACT_APP_SERVER_BASE_URL: "localhost:3000"
+  #   ports:
+  #     - "5050:3000"
+  #   command: npm start 
+ 
