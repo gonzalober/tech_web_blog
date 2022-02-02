@@ -28,5 +28,5 @@ jobs:
           ECR_REPOSITORY: gonzalorepo
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -f Dockerfile -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker compose up -f Dockerfile -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
