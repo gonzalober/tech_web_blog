@@ -21,7 +21,7 @@ resource "aws_launch_configuration" "template" {
   instance_type        = "t2.micro"
   iam_instance_profile = aws_iam_instance_profile.ecs.name
   security_groups      = [aws_security_group.allow_http.id, aws_security_group.docker.id]
-  # key_name             = "gb-key"
+
   user_data = <<EOF
       #! /bin/bash
     sudo apt-get update
