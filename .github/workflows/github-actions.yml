@@ -28,7 +28,7 @@ jobs:
           ECR_REPOSITORY: 603825719481.dkr.ecr.us-east-1.amazonaws.com/gonzalorepo
           IMAGE_TAG: latest
         run: |
-          docker-compose up -d
+          docker-compose up --build
           docker-compose push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
 # docker-compose push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
