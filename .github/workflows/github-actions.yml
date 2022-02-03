@@ -22,14 +22,15 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1
 
       - uses: actions/checkout@v2
-      - name: Build image
-        run: docker-compose up -d
       - name: Build, tag, and push image to Amazon ECR
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: 603825719481.dkr.ecr.us-east-1.amazonaws.com/gonzalorepo
           IMAGE_TAG: latest
-        run: docker-compose push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        run: |
+          docker-compose up -d
+          docker-compose push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
 # docker-compose push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 # docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
 #  docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
